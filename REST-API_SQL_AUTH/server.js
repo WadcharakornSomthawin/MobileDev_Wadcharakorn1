@@ -5,19 +5,19 @@ const restaurantRouter = require("./routes/restaurant.router");
 // Create Server
 const app = express();
 
-//Sequlize
-const db = require("./models")
+//Sequlize Config
+const db = require("./models");
 const Role = db.role;
 
-db.sequelize.sync({force:true}).then(()=>{
+db.sequelize.sync({ force: true }).then(() => {
   console.log("Drop and Resync database");
   initial();
-})
+});
 
-const initial = () =>{
+const initial = () => {
   Role.create({
-    id:1,
-    name:"user"
+    id: 1,
+    name: "user",
   });
   Role.create({
     id: 2,
@@ -27,7 +27,7 @@ const initial = () =>{
     id: 3,
     name: "admin",
   });
-}
+};
 
 //Use Middleware
 app.use(cors());
@@ -40,6 +40,10 @@ app.get("/", (req, res) => {
 });
 // Restaurant router
 app.use("/apis", restaurantRouter);
+
+//Authen & User Router
+require("./routes/auth.router")(app);
+require("./routes/user.router")(app);
 
 // Running server
 app.listen(5000, () => {

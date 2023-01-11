@@ -3,7 +3,7 @@ module.exports = {
   USER: "root",
   PASSWORD: "",
   DB: "restaurants",
-  dialect:"mysql",
+  dialect: "mysql",
   pool:{
     max:5,
     min:0,
