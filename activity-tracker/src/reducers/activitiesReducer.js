@@ -21,11 +21,12 @@ const activitiesReducer = (state = initialState, action) => {
     case "DELETE_ACTIVITY":
       const copyState = [...state]; //การโคลน
       //find in of object to
-      const i = copyState.findIndex(
-        (x) => x.id === payload.id
-        );
-      copyState.splice(i, 1);
-      return [...copyState];
+      // const i = copyState.findIndex(
+      //   (x)=>x.id === payload.id
+      //   );
+      // copyState.splice(i, 1);
+      // return [...copyState];
+      return copyState.filter((activity) => activity.id !== payload.id);
     default:
       return state;
   }
