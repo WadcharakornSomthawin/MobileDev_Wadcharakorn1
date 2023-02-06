@@ -1,18 +1,29 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
+import {useDispatch} from "react-redux";
 
 const AddActivity = () => {
+  const dispatch = useDispatch();
   const [data, setData] = useState({
     name: "",
     duration: "",
   });
-  const handleChange = (e) => {
+  const handleChange = (e) =>{
     e.persist();
-    setData((prev) => ({ ...prev, [e.target.name]: e.target.value })); //...prev เอาค่าเก่ามาด้วย
-  };
+    setData((prev)=>({ ...prev, [e.target.name]: e.target.value}));
+  }
+  const addActivity = () => {
+    dispatch({
+        type:"CREATE_ACTIVITY",
+        payload:{
+          name:data.name,
+          duration:data.duration
+        }
+    })
+  }
   return (
     <div className="add">
       <div className="input-section">
-        <p>Activity name:</p>
+        <p>Activity name: </p>
         <input
           type="text"
           onChange={(e) => handleChange(e)}
@@ -21,7 +32,7 @@ const AddActivity = () => {
         />
       </div>
       <div className="input-section">
-        <p>Duration:</p>
+        <p>Duration: </p>
         <input
           type="text"
           onChange={(e) => handleChange(e)}
@@ -29,7 +40,7 @@ const AddActivity = () => {
           placeholder="Duration ..."
         />
       </div>
-      <button>Add activity</button>
+      <button onClick={addActivity}>Add Activity</button>
     </div>
   );
 };
