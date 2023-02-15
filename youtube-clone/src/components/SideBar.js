@@ -16,20 +16,30 @@ const SideBar = ({ selectedCategory, setSeletedCategory }) => {
         return (
           <button
             className="category-btn"
-            onClick={()=>{setSeletedCategory(category.name)}}
+            onClick={() => {
+              setSeletedCategory(category.name);
+            }}
             style={{
-              background:"#fc1503" & (category.name === selectedCategory),color:"white",
+              background: category.name === selectedCategory && "#fc1503",
+              color: "white",
             }}
             key={category.name}
           >
-            <span style={{ color: category.name === selectedCategory ? "white" : "red", marginRight: "15px",}}>
+            <span
+              style={{
+                color: category.name === selectedCategory ? "white" : "red",
+                marginRight: "15px",
+              }}
+            >
               {category.icon}
             </span>
             <span
-                style={{
-                    opacity : category.name === selectedCategory ? "1" : "0.5",
-                }}
-            >{category.name}</span>
+              style={{
+                opacity: category.name === selectedCategory ? "1" : "0.5",
+              }}
+            >
+              {category.name}
+            </span>
           </button>
         );
       })}
