@@ -7,7 +7,7 @@ const Videos = ({ videos, direction }) => {
   // console.log(videos);
   return (
     <Stack //propoties
-      direction="row" //ทิศทาง
+      direction={direction || "row"} //ทิศทาง
       flexWrap="wrap" //เต็มแถวตัดขึ้นแถวใหม่
       justifyContent="start" //กระจายส่วน
       alignItems="start"
