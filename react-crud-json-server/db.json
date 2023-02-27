@@ -1,0 +1,39 @@
+{
+  "employee": [
+    {
+      "name": "Wadcharakorn Somthawin",
+      "email": "wadcharakorn030345@gmail.com",
+      "phone": "0967305591",
+      "status": "true",
+      "id": 1
+    },
+    {
+      "id": 2,
+      "name": "Wadcharakorn",
+      "email": "wad3345@gmail.com",
+      "phone": "0987654321",
+      "status": "true"
+    },
+    {
+      "id": 3,
+      "name": "Thanaporn",
+      "email": "tha@gmail.com",
+      "phone": "0987654321",
+      "status": "true"
+    },
+    {
+      "name": "Mike",
+      "email": "mike@gmail.com",
+      "phone": "0912345678",
+      "status": true,
+      "id": 4
+    },
+    {
+      "name": "Wadcharakorn Somthawin",
+      "email": "wadcharakorn030345@gmail.com",
+      "phone": "0967305591",
+      "status": "true",
+      "id": 5
+    }
+  ]
+}
