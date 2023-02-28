@@ -1,106 +1,42 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 const EmpDetail = () => {
-  const [emData, setEmData] = useState(null);
+  const [empDetail, setEmpDetail] = useState("");
   const navigate = useNavigate();
+  const { empId } = useParams();
+
   useEffect(() => {
     axios
-      .get("http://localhost:8000/employee")
+      .get("http://localhost:8000/employee/" + empId)
       .then((res) => {
-        console.log(res);
-        setEmData(res.data);
+        console.log(res.data);
+        setEmpDetail(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        //console.log(err);
       });
   }, []);
 
-  const loadEdit = (id) => {
-    navigate("/employee/edit/" + id);
-  };
-  const loadDetail = (id) => {
-    navigate("/employee/detail/" + id);
-  };
-  const removeEmp = (id) => {
-    if (window.confirm("Do you want to delete this  employee?")) {
-      axios
-        .delete("http://localhost:8000/employee/" + id)
-        .then((res) => {
-          alert("Remove successfuly.");
-          window.location.reload();
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  };
-
   return (
-    <div className="container">
-      <div className="card">
+    <div className="row col-lg-9" style={{ textAlign: "left", display: "flex",display: "inline-block" }}>
+      <div className="card ">
         <div className="card-title">
-          <h2>Employee List</h2>
+          <h3>Employee List</h3>
         </div>
-        <div className="card-body">
+        <div className="card-body" >
+          <h3>The Employee name is : {empDetail.name} ({empDetail.id}) </h3>
+          <h5>Content Detail</h5>
+          <h6>Email is : {empDetail.email} </h6>
+          <h6>Phone is : {empDetail.phone} </h6>
           <Link
-            to="/employee/create"
-            className="btn btn-success"
+            to="/"
+            className="btn btn-danger"
             style={{ float: "left" }}
           >
-            Add new (+)
+            Back to Listing
           </Link>
-          <table className="table table-bordered">
-            <thead className="bg-dark text-white">
-              <tr>
-                <td>ID</td>
-                <td>Name</td>
-                <td>Email</td>
-                <td>Phone</td>
-                <td>ACtion</td>
-              </tr>
-            </thead>
-            <tbody>
-              {emData &&
-                emData.map((item) => {
-                  return (
-                    <tr key={item.id}>
-                      <td>{item.id}</td>
-                      <td>{item.name}</td>
-                      <td>{item.email}</td>
-                      <td>{item.phone}</td>
-                      <td>
-                        <a
-                          className="btn btn-success"
-                          onClick={() => {
-                            loadEdit(item.id);
-                          }}
-                        >
-                          Edit
-                        </a>{" "}
-                        <a
-                          className="btn btn-danger"
-                          onClick={() => {
-                            removeEmp(item.id);
-                          }}
-                        >
-                          Remove
-                        </a>{" "}
-                        <a
-                          className="btn btn-primary"
-                          onClick={() => {
-                            loadDetail(item.id);
-                          }}
-                        >
-                          Detail
-                        </a>
-                      </td>
-                    </tr>
-                  );
-                })}
-            </tbody>
-          </table>
         </div>
       </div>
     </div>
