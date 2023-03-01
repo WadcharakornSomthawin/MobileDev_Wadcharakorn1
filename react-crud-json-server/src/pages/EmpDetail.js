@@ -1,10 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const EmpDetail = () => {
   const [empDetail, setEmpDetail] = useState("");
-  const navigate = useNavigate();
   const { empId } = useParams();
 
   useEffect(() => {
@@ -20,7 +19,7 @@ const EmpDetail = () => {
   }, []);
 
   return (
-    <div className="row col-lg-9" style={{ textAlign: "left", display: "flex",display: "inline-block" }}>
+    <div className="row col-lg-6" style={{ textAlign: "left", display: "flex",display: "inline-block" }}>
       <div className="card ">
         <div className="card-title">
           <h3>Employee Detail</h3>
