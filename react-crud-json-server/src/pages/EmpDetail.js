@@ -23,7 +23,7 @@ const EmpDetail = () => {
     <div className="row col-lg-9" style={{ textAlign: "left", display: "flex",display: "inline-block" }}>
       <div className="card ">
         <div className="card-title">
-          <h3>Employee List</h3>
+          <h3>Employee Detail</h3>
         </div>
         <div className="card-body" >
           <h3>The Employee name is : {empDetail.name} ({empDetail.id}) </h3>
