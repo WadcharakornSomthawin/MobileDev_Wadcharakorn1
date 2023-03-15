@@ -15,7 +15,7 @@ import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { useNavigate } from "react-router-dom"; //โยนไปหน้าอื่น
 
-const Header = () => {
+const Header = ({type}) => {
   const [destination, setDestination] = useState("");
   const [openDate, setOpenDate] = useState(false); //คลิกวันที่หรือยัง
   const [date, setDate] = useState([
@@ -42,12 +42,13 @@ const Header = () => {
       };
     });
   };
-  const handleSearch = () =>{
-    navigate("/hotels",{state : {destination , date , options}});
+
+  const handleSearch = () => {
+    navigate("/hotels", { state: {destination, date, options }});
   };
   return (
     <div className="header">
-      <div className="headerContainer">
+      <div className={type === "list" ? "headerContainer listMode" : "headerContainer"}>
         <div className="headerList">
           <div className="headerListItem active">
             <FontAwesomeIcon icon={faBed} />
@@ -70,18 +71,16 @@ const Header = () => {
             <span>Airport Taxis</span>
           </div>
         </div>
-
-        <h1 className="headerTitle"> A lifetime od discount ? It's Genius.</h1>
+{type !== "list" &&(
+<>
+<h1 className="headerTitle"> A lifetime od discount ? It's Genius.</h1>
         <p className="headerDescription">
           Get rewarded for your travel - unlick instant savings of 10% or more
           with a free SE Booking account.
         </p>
-        
-        <button className="headerBtn ">Sign in / Register</button>
+        <button className="headerBtn">Sign in / Register</button>
 
-
-     
-        <div className="headerSearch ">
+        <div className="headerSearch">
           <div className="headerSearchItem">
             <FontAwesomeIcon icon={faBed} />
             <input
@@ -198,20 +197,14 @@ const Header = () => {
               </div>
             )}
           </div>
-         
-        <div className='headerSearchItem'>
-                    <button className='headerBtn' onClick={handleSearch}>Search</button>
-                </div>
-   
-         
+          <div className="headerSearchItem">
+                <button className="headerBtn" onClick={handleSearch}>Search</button>
+          </div>
         </div>
+</>)}
         
       </div>
-      
-      </div>
-
-
-    
+    </div>
   );
 };
 
